@@ -48,6 +48,7 @@ import {environment} from '../environments/environment';
     MatIconModule,
     MatOptionModule,
     MatFormFieldModule,
+    MatSelectModule,
     StoreModule.forRoot( appReducers ),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
