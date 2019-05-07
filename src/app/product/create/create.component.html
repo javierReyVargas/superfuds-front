@@ -1,4 +1,7 @@
 <div class="container">
+
+  <app-loading *ngIf="loading"></app-loading>
+
   <div class="row">
     <div class="col text-center">
       <h2>Agregar productos</h2>
@@ -9,11 +12,20 @@
     <div class="col-6">
       <mat-form-field class="example-full-width">
         <mat-label>Seleccione un producto</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let food of foods" [value]="food.value">
-            {{food.viewValue}}
+        <mat-select [(ngModel)]="dataProductSelected"
+                    (ngModelChange)="setDataProduct()">
+          <mat-option *ngFor="let product of arrProducts" [value]="product">
+            {{product.name}}
           </mat-option>
         </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-6">
+      <mat-form-field class="example-full-width">
+        <input matInput
+               [(ngModel)]="dataProduct.name"
+               placeholder="Nombre">
       </mat-form-field>
     </div>
   </div>
@@ -22,12 +34,14 @@
       <mat-form-field class="example-full-width">
         <input matInput
                type="number"
+               [(ngModel)]="dataProduct.quantity"
                placeholder="Cantidad">
       </mat-form-field>
     </div>
     <div class="col-6">
       <mat-form-field class="example-full-width">
         <input matInput
+               [(ngModel)]="dataProduct.numLot"
                placeholder="Numero de lote">
       </mat-form-field>
     </div>
@@ -38,6 +52,7 @@
       <mat-form-field class="example-full-width">
         <input matInput
                type="date"
+               [(ngModel)]="dataProduct.expirationDate"
                placeholder="Fecha de vencimiento">
       </mat-form-field>
     </div>
@@ -45,6 +60,7 @@
       <mat-form-field class="example-full-width">
         <input matInput
                type="number"
+               [(ngModel)]="dataProduct.price"
                placeholder="Precio">
       </mat-form-field>
     </div>
@@ -53,7 +69,9 @@
   <div class="row">
     <div class="col-12">
       <button type="button"
-              class="btn btn-primary btn-lg btn-block">Agregar</button>
+              (click)="saveData()"
+              class="btn btn-primary btn-lg btn-block">Agregar
+      </button>
     </div>
   </div>
 </div>

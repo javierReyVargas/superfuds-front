@@ -1,6 +1,7 @@
 export class Product {
   quantity: number;
-  numLote: string;
-  expiredDate: string;
+  numLot: string;
+  expirationDate: string;
   price: string;
+  name: string;
 }

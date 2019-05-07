@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../store/app.reducer';
 
+import * as productsActions from '../../store/actions';
+import {Product} from '../../models/Product';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -7,9 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  public arrProducts: Product[] = [];
+  public loading: boolean;
+
+  constructor( public store: Store<AppState>) { }
 
   ngOnInit() {
+    this.store.select('Products').subscribe(
+      (response) => {
+        this.arrProducts = response.products;
+        this.loading = response.loading;
+      }
+    );
+    this.store.dispatch( new productsActions.LoadProducts());
   }
 
 }

@@ -24,6 +24,11 @@ import {StoreModule} from '@ngrx/store';
 import {appReducers} from './store/app.reducer';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
+import {EffectsModule} from '@ngrx/effects';
+import {arrEffects} from './store/effects';
+import {HttpClientModule} from '@angular/common/http';
+import { LoadingComponent } from './loading/loading.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,8 @@ import {environment} from '../environments/environment';
     ListComponent,
     InventoryComponent,
     MenuComponent,
-    CardComponent
+    CardComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -47,13 +53,16 @@ import {environment} from '../environments/environment';
     MatButtonModule,
     MatIconModule,
     MatOptionModule,
+    FormsModule,
     MatFormFieldModule,
     MatSelectModule,
     StoreModule.forRoot( appReducers ),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production
-    })
+    }),
+    EffectsModule.forRoot( arrEffects ),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

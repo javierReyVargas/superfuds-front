@@ -3,6 +3,7 @@ import * as fromProducts from '../actions';
 
 export interface ProductsState {
   products: Product[];
+  product: Product;
   loaded: boolean;
   loading: boolean;
   error: any;
@@ -10,6 +11,7 @@ export interface ProductsState {
 
 const initialState: ProductsState = {
   products: [],
+  product: null,
   loaded: false,
   loading: false,
   error: null
@@ -39,7 +41,38 @@ export function productsReducer(state = initialState, action: fromProducts.produ
         ... state,
         loaded: false,
         loading: false,
-        error: action.payload
+        error: {
+          status: action.payload.status,
+          message: action.payload.message,
+          url: action.payload.url
+        }
+      };
+
+    case fromProducts.CREATE_PRODUCT:
+       return {
+         ... state,
+         product: action.dataProduct,
+         loading: true,
+         loaded: false
+       };
+
+    case fromProducts.CREATE_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        loaded: true,
+        loading: false,
+      };
+
+    case fromProducts.CREATE_PRODUCT_FAILS:
+      return {
+        ... state,
+        loaded: false,
+        loading: false,
+        error: {
+          status: action.payload.status,
+          message: action.payload.message,
+          url: action.payload.url
+        }
       };
 
     default:
