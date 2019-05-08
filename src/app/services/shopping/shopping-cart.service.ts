@@ -15,7 +15,7 @@ export class ShoppingCartService {
     this.url = environment.API_URL;
   }
 
-  public saveBill(arrProducts: Product[]): Observable<any> {
+  public saveBill(arrProducts: object): Observable<any> {
     return this.http.post( this.url + 'client/' + 1 + '/bill', arrProducts);
   }
 }

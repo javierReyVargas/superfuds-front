@@ -3,6 +3,7 @@ export class Product {
   quantityBuy: number;
   numLot: string;
   expirationDate: string;
+  created_at: string;
   price: string;
   name: string;
   id: number;

@@ -9,3 +9,4 @@ export const arrEffects: any[] = [
 ];
 
 export * from './products.effects';
+export * from './shoppingcart.effects';

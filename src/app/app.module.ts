@@ -31,6 +31,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { LoadingComponent } from './shared/loading/loading.component';
 import {FormsModule} from '@angular/forms';
 import { ShoppingCartComponent } from './shared/shopping-cart/shopping-cart.component';
+import { BillComponent } from './components/bill/bill.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ShoppingCartComponent } from './shared/shopping-cart/shopping-cart.comp
     MenuComponent,
     CardComponent,
     LoadingComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    BillComponent
   ],
   imports: [
     BrowserModule,
