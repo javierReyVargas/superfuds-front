@@ -1,9 +1,11 @@
 
 
 import { ProductsEffects } from './products.effects';
+import { ShoppingCartEffects } from './shoppingcart.effects';
 
 export const arrEffects: any[] = [
-  ProductsEffects
+  ProductsEffects,
+  ShoppingCartEffects
 ];
 
 export * from './products.effects';

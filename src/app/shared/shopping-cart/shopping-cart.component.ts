@@ -3,7 +3,7 @@ import {Product} from '../../models/Product';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../store/app.reducer';
 import {MatDialogRef} from '@angular/material';
-import {forEach} from '@angular/router/src/utils/collection';
+import * as fromShoppingCartActions from '../../store/actions';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -32,8 +32,15 @@ export class ShoppingCartComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  public getValueProductTotal( quantity: number, price: number): number {
-    return quantity * price;
+  public getValueProductTotal( quantityBuy: number, price: number, quantity: number): number {
+    this.getTotalBill();
+    if (quantityBuy !== undefined) {
+      if ( quantityBuy <= quantity) {
+        return quantityBuy * price;
+      } else {
+        return quantity * price;
+      }
+    }
   }
 
   public getTotalBill() {
@@ -41,10 +48,24 @@ export class ShoppingCartComponent implements OnInit {
     numTotalBill = 0;
 
     for (let i = 0; i < this.arrProducts.length; i++ ) {
-      numTotalBill += this.arrProducts[i].quantityBuy * +this.arrProducts[i].price;
+      if ( this.arrProducts[i].quantityBuy !== null &&
+        this.arrProducts[i].quantityBuy !== undefined ) {
+        if ( this.arrProducts[i].quantityBuy <= this.arrProducts[i].quantity ) {
+          numTotalBill += this.arrProducts[i].quantityBuy * +this.arrProducts[i].price;
+        } else {
+          numTotalBill += this.arrProducts[i].quantity * +this.arrProducts[i].price;
+        }
+      }
     }
-
     this.totalBill = numTotalBill;
+  }
+
+  public deleteProductToCart(dataProduct: Product): void {
+    this.store.dispatch( new fromShoppingCartActions.DeleteProductToCart(dataProduct));
+  }
+
+  public doBill(): void {
+    this.store.dispatch( new fromShoppingCartActions.DoBill(this.arrProducts));
   }
 
 }

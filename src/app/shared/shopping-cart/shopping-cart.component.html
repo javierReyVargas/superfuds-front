@@ -5,49 +5,60 @@
   </div>
 </div>
 
-<div class="card border-success mb-3" *ngFor="let product of arrProducts" style="max-width: 18rem;">
-  <div class="card-header bg-transparent border-success">{{product.name}}</div>
+<div *ngIf="arrProducts.length > 0">
+  <div class="card border-success mb-3" *ngFor="let product of arrProducts" style="max-width: 18rem;">
+    <div class="card-header bg-transparent border-success  d-flex justify-content-between align-items-center">{{product.name}}
+      <button type="button"
+              class="btn btn-danger btn-sm"
+              (click)="deleteProductToCart(product)">Eliminar</button>
+    </div>
 
-  <div class="card-body text-success">
+    <div class="card-body text-success">
 
-    <ul class="list-group">
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        Número de lote:
-        <span class="badge badge-primary badge-pill">{{product.numLot}}</span>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        Fecha de vencimiento:
-        <span class="badge badge-primary badge-pill">{{product.expirationDate}}</span>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        Precio:
-        <span class="badge badge-primary badge-pill">{{product.price | currency}}</span>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        Cantidad disponible:
-        <span class="badge badge-primary badge-pill">{{product.quantity}}</span>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        Cantidad a comprar:
-        <input type="number" min="0" class="badge-pill" [(ngModel)]="product.quantityBuy" >
-        <!--<span class="badge badge-primary badge-pill">1</span>-->
-      </li>
-    </ul>
+      <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Número de lote:
+          <span class="badge badge-primary badge-pill">{{product.numLot}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Fecha de vencimiento:
+          <span class="badge badge-primary badge-pill">{{product.expirationDate}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Precio:
+          <span class="badge badge-primary badge-pill">{{product.price | currency}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Cantidad disponible:
+          <span class="badge badge-primary badge-pill">{{product.quantity}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Cantidad a comprar:
+          <input type="number" min="0" class="badge-pill"
+                 [max]="product.quantity"
+                 [(ngModel)]="product.quantityBuy">
+        </li>
+      </ul>
 
+    </div>
+    <div class="card-footer bg-transparent border-success">Total: {{ getValueProductTotal(product.quantityBuy, product.price, product.quantity) || 0}} </div>
   </div>
-  <div class="card-footer bg-transparent border-success">Total: {{ getValueProductTotal(product.quantityBuy, product.price) || 0}} </div>
-</div>
 
-<div class="row">
-  <div class="col">
-    Total pedido: {{ totalBill || 0}}
+  <div class="row text-center">
+    <div class="col">
+      Total pedido: <h3>{{ totalBill }}</h3>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-6">
-    <button type="button" class="btn btn-primary btn-lg btn-block">Comprar</button>
-  </div>
-  <div class="col-6">
-    <button type="button" class="btn btn-primary btn-lg btn-block">Cancelar</button>
+  <div class="row">
+    <div class="col-6">
+      <button type="button"
+              class="btn btn-primary btn-lg btn-block"
+              (click)="doBill()">Comprar</button>
+    </div>
+    <div class="col-6">
+      <button type="button"
+              class="btn btn-primary btn-lg btn-block"
+              (click)="closeDialog()">Cancelar</button>
+    </div>
   </div>
 </div>
