@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MatButtonModule,
+  MatBadgeModule,
+  MatButtonModule, MatDialogModule,
   MatFormFieldModule, MatIconModule,
   MatInputModule,
   MatOptionModule,
@@ -13,13 +14,13 @@ import {
   MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
-import { HeaderComponent } from './header/header.component';
-import { SideNavComponent } from './side-nav/side-nav.component';
-import { CreateComponent } from './product/create/create.component';
-import { ListComponent } from './product/list/list.component';
-import { InventoryComponent } from './inventory/inventory.component';
-import { MenuComponent } from './menu/menu.component';
-import { CardComponent } from './product/card/card.component';
+import { HeaderComponent } from './components/header/header.component';
+import { SideNavComponent } from './components/side-nav/side-nav.component';
+import { CreateComponent } from './components/product/create/create.component';
+import { ListComponent } from './components/product/list/list.component';
+import { InventoryComponent } from './components/inventory/inventory.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { CardComponent } from './components/product/card/card.component';
 import {StoreModule} from '@ngrx/store';
 import {appReducers} from './store/app.reducer';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
@@ -27,8 +28,9 @@ import {environment} from '../environments/environment';
 import {EffectsModule} from '@ngrx/effects';
 import {arrEffects} from './store/effects';
 import {HttpClientModule} from '@angular/common/http';
-import { LoadingComponent } from './loading/loading.component';
+import { LoadingComponent } from './shared/loading/loading.component';
 import {FormsModule} from '@angular/forms';
+import { ShoppingCartComponent } from './shared/shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import {FormsModule} from '@angular/forms';
     InventoryComponent,
     MenuComponent,
     CardComponent,
-    LoadingComponent
+    LoadingComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
@@ -52,9 +55,11 @@ import {FormsModule} from '@angular/forms';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatOptionModule,
+    MatBadgeModule,
     FormsModule,
     MatFormFieldModule,
+    MatDialogModule,
+    MatOptionModule,
     MatSelectModule,
     StoreModule.forRoot( appReducers ),
     StoreDevtoolsModule.instrument({
@@ -63,6 +68,9 @@ import {FormsModule} from '@angular/forms';
     }),
     EffectsModule.forRoot( arrEffects ),
     HttpClientModule
+  ],
+  entryComponents: [
+    ShoppingCartComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

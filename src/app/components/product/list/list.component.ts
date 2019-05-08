@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
-import {AppState} from '../../store/app.reducer';
+import {AppState} from '../../../store/app.reducer';
 
-import * as productsActions from '../../store/actions';
-import {Product} from '../../models/Product';
+import * as productsActions from '../../../store/actions';
+import {Product} from '../../../models/Product';
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -13,8 +14,10 @@ export class ListComponent implements OnInit {
 
   public arrProducts: Product[] = [];
   public loading: boolean;
+  public url: string;
 
-  constructor( public store: Store<AppState>) { }
+  constructor( public store: Store<AppState>) {
+  }
 
   ngOnInit() {
     this.store.select('Products').subscribe(

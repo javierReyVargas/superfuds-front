@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
-import {Product} from '../../models/Product';
-import {AppState} from '../../store/app.reducer';
-import * as productsActions from '../../store/actions';
+import {Product} from '../../../models/Product';
+import {AppState} from '../../../store/app.reducer';
+import * as productsActions from '../../../store/actions';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',

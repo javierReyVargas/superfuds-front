@@ -1,0 +1,10 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Superfuds</span>
+    <span class="example-spacer"></span>
+    <i class="fas fa-cart-plus"
+       [matBadge]="numBadge"
+       matBadgePosition="above after"
+       matBadgeColor="accent" (click)="showShoppingCart()"></i>
+  </mat-toolbar-row>
+</mat-toolbar>

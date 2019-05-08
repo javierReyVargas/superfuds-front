@@ -1,0 +1,16 @@
+<div class="card mb-3" style="max-width: 400px;">
+  <div class="row no-gutters">
+    <div class="col-md-4 backgroundImage">
+      <img [src]="url + 'logosuperf.svg'" class="card-img" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"> {{ dataProduct.name }}</h5>
+        <p class="card-text">Precio: {{ dataProduct.price }}</p>
+        <p class="card-text">Fecha de vencimiento: {{ dataProduct.expirationDate }}</p>
+        <p class="card-text">Cantidades disponibles: {{ dataProduct.quantity}}</p>
+        <button mat-mini-fab (click)="addProductToCart()">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>

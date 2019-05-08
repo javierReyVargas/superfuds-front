@@ -1,0 +1,53 @@
+<div class="row text-center" *ngIf="arrProducts.length === 0">
+  <div class="col">
+    <h3>No hay productos en el carrito</h3>
+    <button mat-mini-fab (click)="closeDialog()">Entendido</button>
+  </div>
+</div>
+
+<div class="card border-success mb-3" *ngFor="let product of arrProducts" style="max-width: 18rem;">
+  <div class="card-header bg-transparent border-success">{{product.name}}</div>
+
+  <div class="card-body text-success">
+
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Número de lote:
+        <span class="badge badge-primary badge-pill">{{product.numLot}}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Fecha de vencimiento:
+        <span class="badge badge-primary badge-pill">{{product.expirationDate}}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Precio:
+        <span class="badge badge-primary badge-pill">{{product.price | currency}}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Cantidad disponible:
+        <span class="badge badge-primary badge-pill">{{product.quantity}}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Cantidad a comprar:
+        <input type="number" min="0" class="badge-pill" [(ngModel)]="product.quantityBuy" >
+        <!--<span class="badge badge-primary badge-pill">1</span>-->
+      </li>
+    </ul>
+
+  </div>
+  <div class="card-footer bg-transparent border-success">Total: {{ getValueProductTotal(product.quantityBuy, product.price) || 0}} </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    Total pedido: {{ totalBill || 0}}
+  </div>
+</div>
+<div class="row">
+  <div class="col-6">
+    <button type="button" class="btn btn-primary btn-lg btn-block">Comprar</button>
+  </div>
+  <div class="col-6">
+    <button type="button" class="btn btn-primary btn-lg btn-block">Cancelar</button>
+  </div>
+</div>
