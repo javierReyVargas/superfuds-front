@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {Bill} from '../../models/Bill';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../store/app.reducer';
+
+import * as fromBillsActions from '../../store/actions';
 
 @Component({
   selector: 'app-bill',
@@ -7,9 +12,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BillComponent implements OnInit {
 
-  constructor() { }
+  public arrBills: Bill[] = [];
+
+  constructor( public store: Store<AppState>) { }
 
   ngOnInit() {
+    this.store.select('Bills').subscribe(
+      response => {
+        this.arrBills = response.bills;
+      }
+    );
+
+    this.store.dispatch(new fromBillsActions.LoadBills());
   }
 
 }

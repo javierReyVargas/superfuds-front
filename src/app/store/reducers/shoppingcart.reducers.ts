@@ -4,6 +4,7 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 export interface ShoppingCartState {
   products: Product[];
+  totalValueProducts: number;
   loading: boolean;
   loaded: boolean;
   error: any;
@@ -11,6 +12,7 @@ export interface ShoppingCartState {
 
 const initialState: ShoppingCartState = {
   products: [],
+  totalValueProducts: 0,
   loading: false,
   loaded: false,
   error: null
@@ -54,14 +56,16 @@ export function shoppingCartReducer(state = initialState, action: fromShoppingCa
         loading: true,
         products: [
           ...action.product
-        ]
+        ],
+        totalValueProducts: action.valueTotalProducts
       };
     case fromShoppingCart.DO_BILL_SUCCESS:
       return {
         ...state,
         loading: false,
         loaded: true,
-        products: []
+        products: [],
+        totalValueProducts: 0
       };
     case fromShoppingCart.DO_BILL_FAIL:
       return {

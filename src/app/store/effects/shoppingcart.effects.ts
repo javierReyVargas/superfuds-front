@@ -17,13 +17,10 @@ export class ShoppingCartEffects {
     ofType(fromShoppingCartActions.DO_BILL),
 
     switchMap((action) => {
-      return this.shoppingService.saveBill( {arrProducts: action['product']})
+      return this.shoppingService.saveBill( {arrProducts: action['product'], totalBill: action['valueTotalProducts']})
         .pipe(
           map(
             () => {
-              /*
-              * TODO dispatch actions and effects after save bills
-              * */
               return new fromShoppingCartActions.DoBillSuccess();
             }),
           catchError( error => of(new fromShoppingCartActions.DoBillFail(error)))

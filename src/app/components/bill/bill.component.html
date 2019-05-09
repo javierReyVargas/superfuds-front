@@ -1,3 +1,28 @@
-<p>
-  bill works!
-</p>
+<div class="container">
+
+  <div class="row text-center">
+    <div class="col">
+
+      <h3>Lista de facturas</h3>
+
+    </div>
+  </div>
+  <div class="card" *ngFor="let bill of arrBills">
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <h5 class="card-title">{{bill.client.name}}</h5>
+        </div>
+        <div class="col text-right">
+          <button type="button" class="btn btn-danger">Eliminar factura</button>
+        </div>
+      </div>
+      <ul class="list-group" *ngFor="let product of bill.products">
+        <li class="list-group-item">{{product.name}}</li>
+        <li class="list-group-item">{{product.price}}</li>
+        <li class="list-group-item">{{product.quantity}}</li>
+      </ul>
+    </div>
+  </div>
+
+</div>

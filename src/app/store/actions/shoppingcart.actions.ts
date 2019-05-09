@@ -20,7 +20,7 @@ export class DeleteProductToCart implements Action {
 
 export class DoBill implements Action {
   readonly type = DO_BILL;
-  constructor( public product: Product[]) {}
+  constructor( public product: Product[], public valueTotalProducts: number) {}
 }
 
 export class DoBillSuccess implements Action {

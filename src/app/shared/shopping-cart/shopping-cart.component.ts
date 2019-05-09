@@ -65,7 +65,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   public doBill(): void {
-    this.store.dispatch( new fromShoppingCartActions.DoBill(this.arrProducts));
+    this.store.dispatch( new fromShoppingCartActions.DoBill(this.arrProducts, this.totalBill));
   }
 
 }
