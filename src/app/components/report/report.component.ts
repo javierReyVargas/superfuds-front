@@ -27,7 +27,7 @@ export class ReportComponent implements OnInit {
   typeReport: Array<any> = [
     {value: 'client', viewValue: 'Cliente'},
     {value: 'provider', viewValue: 'Proveedor'},
-    {value: 'product', viewValue: 'Producto'}
+    {value: 'products', viewValue: 'Producto'}
   ];
   constructor( private store: Store<AppState> ) {}
 
