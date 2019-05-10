@@ -1,6 +1,5 @@
 import * as fromReport from '../actions';
 import {Report} from '../../models/Report';
-import {from} from 'rxjs';
 
 
 export interface ReportSatate {
@@ -55,6 +54,17 @@ export function reportReducer(state = initialState, action: fromReport.reportsAc
           message: action.payload.message,
           url: action.payload.url
         }
+      };
+
+    case fromReport.DELETE_DATA_REPORT:
+      return {
+        ...state,
+        total: 0,
+        modelId: null,
+        typeReport: '',
+        loaded: false,
+        loading: false,
+        report: []
       };
 
     default:

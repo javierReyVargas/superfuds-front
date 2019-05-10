@@ -4,7 +4,7 @@ import {AppState} from '../../store/app.reducer';
 import {Product} from '../../models/Product';
 import {MatDialog} from '@angular/material';
 import {ShoppingCartComponent} from '../../shared/shopping-cart/shopping-cart.component';
-
+import * as fromUi from '../../store/actions'
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -30,6 +30,10 @@ export class HeaderComponent implements OnInit {
       width: '300px',
       height: '500px'
     });
+  }
+
+  public openOrClose(): void {
+    this.store.dispatch( new fromUi.OpenOrCloseMenu());
   }
 
 }

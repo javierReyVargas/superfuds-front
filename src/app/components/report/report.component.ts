@@ -52,6 +52,7 @@ export class ReportComponent implements OnInit {
         dataReport => {
           this.arrDataReport = dataReport.report;
           this.total = dataReport.total;
+          this.modelId = dataReport.modelId;
         }
       );
 
@@ -76,5 +77,10 @@ export class ReportComponent implements OnInit {
 
   public generateReport() {
     this.store.dispatch(new fromUserActions.LoadReport( this.strTypeReport, this.modelId));
+  }
+
+
+  public deleteData(): void {
+    this.store.dispatch( new fromUserActions.DeleteDataReport());
   }
 }

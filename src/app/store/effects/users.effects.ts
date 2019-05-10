@@ -50,6 +50,25 @@ export class UsersEffects {
       }
     )
   );
+
+
+  @Effect()
+  login$ = this.actions$.pipe(
+    ofType( fromUsersActions.LOGIN_CLIENTS),
+    switchMap(
+      (actions) => {
+        return this.usersService.login(actions['user'])
+          .pipe(
+            map(
+              ( user ) => {
+                return new fromUsersActions.LoginClientsSuccess( user );
+              },
+              catchError( error => of(new fromUsersActions.LoginClientsFail( error )))
+            )
+          );
+      }
+    )
+  );
 }
 
 

@@ -33,6 +33,8 @@ import {FormsModule} from '@angular/forms';
 import { ShoppingCartComponent } from './shared/shopping-cart/shopping-cart.component';
 import { BillComponent } from './components/bill/bill.component';
 import { ReportComponent } from './components/report/report.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { ReportComponent } from './components/report/report.component';
     LoadingComponent,
     ShoppingCartComponent,
     BillComponent,
-    ReportComponent
+    ReportComponent,
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +76,8 @@ import { ReportComponent } from './components/report/report.component';
     }),
     EffectsModule.forRoot( arrEffects ),
     HttpClientModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatIconModule
   ],
   entryComponents: [
     ShoppingCartComponent

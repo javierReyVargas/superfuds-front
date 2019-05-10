@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../store/app.reducer';
 
 @Component({
   selector: 'app-side-nav',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideNavComponent implements OnInit {
 
-  constructor() { }
+  public openMenu: boolean;
+
+  constructor( public store: Store<AppState>) {}
 
   ngOnInit() {
+    this.store.select('ui')
+      .subscribe(
+        responseUi => {
+          this.openMenu = responseUi.openMenu;
+        }
+      );
   }
 
 }

@@ -9,7 +9,7 @@ export interface AppState {
   Report: reducers.ReportSatate;
   Users: reducers.UserState;
   User: null;
-  ui: null;
+  ui: reducers.UiState;
 }
 
 export const appReducers: ActionReducerMap<AppState> = {
@@ -18,6 +18,6 @@ export const appReducers: ActionReducerMap<AppState> = {
   Bills: reducers.billsReducer,
   Report: reducers.reportReducer,
   Users: reducers.usersReducer,
-  ui: null,
+  ui: reducers.uiReducers,
   User: null
 };
