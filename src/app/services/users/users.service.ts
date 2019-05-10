@@ -56,6 +56,15 @@ export class UsersService {
       );
   }
 
+  public getMe(): Observable<any> {
+    return this.http.get(`${this.url}me`)
+      .pipe(
+        map(
+          response => response['data']
+        )
+      );
+  }
+
   public loginSuccess(userData: User): Observable<any> {
     return of(localStorage.setItem('token', userData.access_token));
   }

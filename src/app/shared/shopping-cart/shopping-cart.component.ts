@@ -4,6 +4,7 @@ import {Store} from '@ngrx/store';
 import {AppState} from '../../store/app.reducer';
 import {MatDialogRef} from '@angular/material';
 import * as fromShoppingCartActions from '../../store/actions';
+import {User} from '../../models/User';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -14,6 +15,8 @@ export class ShoppingCartComponent implements OnInit {
 
   public arrProducts: Product[] = [];
   public totalBill: number;
+  public user: User;
+
 
   constructor( public store: Store<AppState>,
                public dialogRef: MatDialogRef<ShoppingCartComponent>) {
@@ -26,6 +29,13 @@ export class ShoppingCartComponent implements OnInit {
         this.arrProducts = response.products;
       }
     );
+
+    this.store.select('Users')
+      .subscribe(
+        response => {
+          this.user = response.user;
+        }
+      );
   }
 
   public closeDialog(): void {
@@ -65,7 +75,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   public doBill(): void {
-    this.store.dispatch( new fromShoppingCartActions.DoBill(this.arrProducts, this.totalBill));
+    this.store.dispatch( new fromShoppingCartActions.DoBill(this.arrProducts, this.totalBill, this.user));
   }
 
 }

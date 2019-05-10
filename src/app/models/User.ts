@@ -6,4 +6,5 @@ export class User {
   token_type: string;
   access_token: string;
   refresh_token: string;
+  rol_id: number;
 }

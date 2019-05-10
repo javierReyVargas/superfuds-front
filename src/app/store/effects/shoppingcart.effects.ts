@@ -17,7 +17,7 @@ export class ShoppingCartEffects {
     ofType(fromShoppingCartActions.DO_BILL),
 
     switchMap((action) => {
-      return this.shoppingService.saveBill( {arrProducts: action['product'], totalBill: action['valueTotalProducts']})
+      return this.shoppingService.saveBill( {arrProducts: action['product'], totalBill: action['valueTotalProducts']}, action['user'])
         .pipe(
           map(
             () => {

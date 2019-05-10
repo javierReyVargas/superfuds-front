@@ -13,6 +13,8 @@ export const LOGIN_CLIENTS_SUCCESS = '[Load Login CLIENTS] load login clients su
 export const LOGIN_CLIENTS_SAVE_SUCCESS = '[Load Login CLIENTS save] load login clients save success';
 export const LOGIN_CLIENTS_FAIL = '[Load Login CLIENTS] load login clients fail';
 
+export const LOGIN_CLIENTS_ME = '[Load Login CLIENTS me] load login clients me';
+
 export const LOAD_PROVIDERS = '[Load providers] load providers';
 export const LOAD_PROVIDERS_SUCCESS = '[Load providers] load providers success';
 export const LOAD_PROVIDERS_FAIL = '[Load providers] load providers fail';
@@ -47,6 +49,13 @@ export class LoginClients {
 
 export class LoginClientsSuccess {
   readonly type = LOGIN_CLIENTS_SUCCESS;
+
+  constructor(public user: User) {
+  }
+}
+
+export class LoginClientsMe {
+  readonly type = LOGIN_CLIENTS_ME;
 
   constructor(public user: User) {
   }
@@ -93,7 +102,8 @@ export type userActions = LoadClients |
   LoginClientsSuccess |
   LoginClientsFail |
   LoadProviderFail |
-  LoginClientsSaveSuccess;
+  LoginClientsSaveSuccess |
+  LoginClientsMe;
 
 
 

@@ -27,7 +27,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {EffectsModule} from '@ngrx/effects';
 import {arrEffects} from './store/effects';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { LoadingComponent } from './shared/loading/loading.component';
 import {FormsModule} from '@angular/forms';
 import { ShoppingCartComponent } from './shared/shopping-cart/shopping-cart.component';
@@ -35,6 +35,7 @@ import { BillComponent } from './components/bill/bill.component';
 import { ReportComponent } from './components/report/report.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import {InterceptorService} from './services/interceptor/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,13 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
   entryComponents: [
     ShoppingCartComponent
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,8 +1,19 @@
 <ul class="list-group">
-  <li class="list-group-item" [routerLink]="'/load-products'">Cargar productos</li>
-  <li class="list-group-item" [routerLink]="'/buy-products'">Comprar</li>
-  <li class="list-group-item" [routerLink]="'/inventory'">Inventario</li>
-  <li class="list-group-item" [routerLink]="'/bills'">Facturas</li>
-  <li class="list-group-item" [routerLink]="'/reports'">Informes</li>
-  <li class="list-group-item">Salir</li>
+  <li class="list-group-item"
+      [routerLink]="'/load-products'">Cargar productos
+  </li>
+  <li class="list-group-item"
+      [routerLink]="'/buy-products'">Comprar
+  </li>
+  <li class="list-group-item"
+      [routerLink]="'/inventory'"
+      *ngIf="user.rol_id === 1 ">Inventario
+  </li>
+  <li class="list-group-item"
+      [routerLink]="'/bills'"
+      *ngIf="user.rol_id === 1 ">Facturas</li>
+  <li class="list-group-item"
+      [routerLink]="'/reports'"
+      *ngIf="user.rol_id === 1 ">Informes</li>
+  <li class="list-group-item" (click)="logout()">Salir</li>
 </ul>

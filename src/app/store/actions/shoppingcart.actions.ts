@@ -1,5 +1,6 @@
 import {Action} from '@ngrx/store';
 import {Product} from '../../models/Product';
+import {User} from '../../models/User';
 
 
 export const LOAD_PRODUCT_TO_CART = '[ShoppingCart] Load product';
@@ -20,7 +21,7 @@ export class DeleteProductToCart implements Action {
 
 export class DoBill implements Action {
   readonly type = DO_BILL;
-  constructor( public product: Product[], public valueTotalProducts: number) {}
+  constructor( public product: Product[], public valueTotalProducts: number, public user: User) {}
 }
 
 export class DoBillSuccess implements Action {

@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
 import {Product} from '../../models/Product';
+import {User} from '../../models/User';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class ShoppingCartService {
     this.url = environment.API_URL;
   }
 
-  public saveBill(arrProducts: object): Observable<any> {
-    return this.http.post( this.url + 'client/' + 1 + '/bill', arrProducts);
+  public saveBill(arrProducts: object, user: User): Observable<any> {
+    return this.http.post( `${this.url}client/${user.rol_id}/bill`, arrProducts);
   }
 }

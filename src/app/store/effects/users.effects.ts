@@ -69,6 +69,25 @@ export class UsersEffects {
       }
     )
   );
+
+
+  @Effect()
+  saveDataUser$ = this.actions$.pipe(
+    ofType( fromUsersActions.LOGIN_CLIENTS_SUCCESS),
+    switchMap(
+      () => {
+        return this.usersService.getMe()
+          .pipe(
+            map(
+              ( user ) => {
+                return new fromUsersActions.LoginClientsMe( user );
+              },
+              catchError( error => of(new fromUsersActions.LoginClientsFail( error )))
+            )
+          );
+      }
+    )
+  );
 }
 
 

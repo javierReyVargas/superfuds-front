@@ -102,6 +102,12 @@ export function usersReducer(state = initialState, action: fromUsers.userActions
         }
       };
 
+    case fromUsers.LOGIN_CLIENTS_ME:
+      return {
+        ...state,
+        user: action.user
+      };
+
     default:
       return state;
   }
