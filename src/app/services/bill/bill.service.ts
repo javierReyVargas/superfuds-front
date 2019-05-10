@@ -24,7 +24,7 @@ export class BillService {
   }
 
   public deleteBills(bill: Bill): Observable<any> {
-    return this.htt.put(this.url + 'bills', bill)
+    return this.htt.delete(` ${ this.url }bills/${ bill.id }` )
       .pipe(
         map( response => response['data'])
       );

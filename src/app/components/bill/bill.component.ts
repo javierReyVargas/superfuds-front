@@ -26,4 +26,8 @@ export class BillComponent implements OnInit {
     this.store.dispatch(new fromBillsActions.LoadBills());
   }
 
+  public deleteBill(bill: Bill) {
+    this.store.dispatch(new fromBillsActions.DeleteBill(bill));
+  }
+
 }

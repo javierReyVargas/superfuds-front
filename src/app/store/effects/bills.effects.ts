@@ -13,7 +13,7 @@ export class BillsEffects {
               private billService: BillService) {}
 
   @Effect()
-  loadProducts$ = this.actions$.pipe(
+  loadBills$ = this.actions$.pipe(
     ofType(billsActions.LOAD_BILLS),
     switchMap( () => {
       return this.billService.getBills()
@@ -22,6 +22,21 @@ export class BillsEffects {
             return new billsActions.LoadBillSuccess(bills);
           }),
           catchError( error => of(new billsActions.LoadBillFail(error)))
+        );
+    })
+  );
+
+  @Effect()
+  deleteBills$ = this.actions$.pipe(
+    ofType(billsActions.DELETE_BILLS),
+    switchMap( (action) => {
+      return this.billService.deleteBills(action['bill'])
+        .pipe(
+          map( bill => {
+            console.log('response api:: : ', bill);
+            return new billsActions.DeleteBillSuccess(bill);
+          }),
+          catchError( error => of(new billsActions.DeleteBillFail(error)))
         );
     })
   );

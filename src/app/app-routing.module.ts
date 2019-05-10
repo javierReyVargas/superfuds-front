@@ -4,6 +4,7 @@ import {ListComponent} from './components/product/list/list.component';
 import {CreateComponent} from './components/product/create/create.component';
 import {InventoryComponent} from './components/inventory/inventory.component';
 import {BillComponent} from './components/bill/bill.component';
+import {ReportComponent} from './components/report/report.component';
 
 const routes: Routes = [
   {path: '', component: ListComponent},
@@ -11,7 +12,7 @@ const routes: Routes = [
   {path: 'buy-products', component: ListComponent},
   {path: 'inventory', component: InventoryComponent},
   {path: 'bills', component: BillComponent},
-  {path: 'reports', component: InventoryComponent},
+  {path: 'reports', component: ReportComponent},
   {path: '**', component: ListComponent}
 ];
 

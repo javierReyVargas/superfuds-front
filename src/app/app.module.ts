@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatBadgeModule,
-  MatButtonModule, MatDialogModule,
+  MatButtonModule, MatDialogModule, MatExpansionModule,
   MatFormFieldModule, MatIconModule,
   MatInputModule,
   MatOptionModule,
@@ -32,6 +32,7 @@ import { LoadingComponent } from './shared/loading/loading.component';
 import {FormsModule} from '@angular/forms';
 import { ShoppingCartComponent } from './shared/shopping-cart/shopping-cart.component';
 import { BillComponent } from './components/bill/bill.component';
+import { ReportComponent } from './components/report/report.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { BillComponent } from './components/bill/bill.component';
     CardComponent,
     LoadingComponent,
     ShoppingCartComponent,
-    BillComponent
+    BillComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +71,8 @@ import { BillComponent } from './components/bill/bill.component';
       logOnly: environment.production
     }),
     EffectsModule.forRoot( arrEffects ),
-    HttpClientModule
+    HttpClientModule,
+    MatExpansionModule
   ],
   entryComponents: [
     ShoppingCartComponent

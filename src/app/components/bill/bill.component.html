@@ -7,22 +7,68 @@
 
     </div>
   </div>
-  <div class="card" *ngFor="let bill of arrBills">
-    <div class="card-body">
+
+
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let bill of arrBills">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Cliente
+        </mat-panel-title>
+        <mat-panel-description>
+          {{ bill.client.name }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
       <div class="row">
         <div class="col">
-          <h5 class="card-title">{{bill.client.name}}</h5>
-        </div>
-        <div class="col text-right">
-          <button type="button" class="btn btn-danger">Eliminar factura</button>
+          <span class="text-primary">
+          Fecha y hora de creación:
+          </span>
+          {{bill.created_at | date: 'dd/MM/yyyy hh:mm:ss'}}
         </div>
       </div>
-      <ul class="list-group" *ngFor="let product of bill.products">
-        <li class="list-group-item">{{product.name}}</li>
-        <li class="list-group-item">{{product.price}}</li>
-        <li class="list-group-item">{{product.quantity}}</li>
-      </ul>
-    </div>
-  </div>
+      <div class="row">
+        <div class="col text-primary">
+          Producto
+        </div>
+        <div class="col text-primary">
+          Cantidad
+        </div>
+        <div class="col text-primary">
+          Precio
+        </div>
+        <div class="col text-primary">
+          Valor a pagar
+        </div>
+      </div>
+
+      <div class="row" *ngFor="let product of bill.products">
+        <div class="col">
+          {{product.name}}
+        </div>
+        <div class="col">
+          {{product.quantityBuy}}
+        </div>
+        <div class="col">
+          {{product.price | currency}}
+        </div>
+        <div class="col">
+          {{product.price * product.quantityBuy | currency}}
+        </div>
+      </div>
+
+
+      <mat-action-row>
+
+        <button mat-button disabled color="colorButtonTotal"><span> Total factura</span> {{ bill.totalBill | currency}}
+        </button>
+        <button mat-button color="warn" (click)="deleteBill(bill)">Eliminar factura</button>
+      </mat-action-row>
+
+    </mat-expansion-panel>
+
+  </mat-accordion>
+
 
 </div>

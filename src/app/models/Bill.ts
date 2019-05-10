@@ -6,4 +6,5 @@ export class Bill {
   totalBill: number;
   client: User;
   products: Product[];
+  created_at: string;
 }

@@ -23,6 +23,13 @@ export class ProductService {
       );
   }
 
+  public getProductsHasTransactions(): Observable<any> {
+    return this.htt.get(this.url + 'productsHasTransactions')
+      .pipe(
+        map( response => response['data'])
+      );
+  }
+
   public saveProduct(data: Product): Observable<any> {
     return this.htt.post(this.url + 'provider/' + 1 + '/product', data)
       .pipe(

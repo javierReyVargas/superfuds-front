@@ -1,0 +1,107 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col">
+
+      <mat-form-field class="full-width">
+        <mat-label>Informe de ventas por:</mat-label>
+        <mat-select [(ngModel)]="strTypeReport"
+                    (ngModelChange)="modelId = 0">
+          <mat-option *ngFor="let report of typeReport" [value]="report.value">
+            {{report.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+    <div class="col">
+
+      <mat-form-field class="full-width"
+                      *ngIf="strTypeReport === 'client'">
+        <mat-label>Seleccione el cliente</mat-label>
+        <mat-select [(ngModel)]="modelId">
+          <mat-option *ngFor="let client of arrClients"
+                      [value]="client.id">
+            {{client.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="full-width"
+                      *ngIf="strTypeReport === 'provider'">
+        <mat-label>Seleccione el proveedor</mat-label>
+        <mat-select [(ngModel)]="modelId">
+          <mat-option *ngFor="let provider of arrProviders"
+                      [value]="provider.id">
+            {{provider.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="full-width" *ngIf="strTypeReport === 'product'">
+        <mat-label>Seleccione el producto</mat-label>
+        <mat-select [(ngModel)]="modelId">
+          <mat-option *ngFor="let product of arrProducts"
+                      [value]="product.id">
+            {{product.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col text-center">
+
+      <button type="button"
+              *ngIf="showButtonGenerate()"
+              class="btn btn-primary btn-lg btn-block"
+              (click)="generateReport()">Generar</button>
+
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col text-right" *ngIf="strTypeReport === 'client'">
+      Total compra {{ total | currency}}
+    </div>
+
+    <div class="col text-right" *ngIf="strTypeReport === 'provider'">
+      Total Venta {{ total | currency}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th scope="col">Producto</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Valor</th>
+            <th scope="col" *ngIf="strTypeReport !== 'provider'">Proveedor</th>
+            <th scope="col"  *ngIf="strTypeReport !== 'client'" >Cliente</th>
+            <th scope="col">Fecha de compra</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let record of arrDataReport">
+            <th scope="row">{{ record.product }}</th>
+            <td>{{ record.price }}</td>
+            <td>{{ record.quantityBuy | currency}}</td>
+            <td>{{ record.price * record.quantityBuy | date}}</td>
+            <td *ngIf="strTypeReport !== 'provider'">{{ record.provider.name }}</td>
+            <td *ngIf="strTypeReport !== 'client'" >{{ record.client.name }}</td>
+            <td>{{ record.created_at | date}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

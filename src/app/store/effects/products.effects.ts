@@ -28,6 +28,21 @@ export class ProductsEffects {
 
 
   @Effect()
+  loadProductsHasTransactions$ = this.actions$.pipe(
+    ofType(productsActions.LOAD_PRODUCTS_HAS_TRANSACTIONS),
+    switchMap( () => {
+      return this.productService.getProductsHasTransactions()
+        .pipe(
+          map( products => {
+            return new productsActions.LoadProductsHasTransactionsSuccess(products);
+          }),
+          catchError( error => of(new productsActions.LoadProductsHasTransactionsFail(error)))
+        );
+    })
+  );
+
+
+  @Effect()
   createProduct$ = this.actions$.pipe(
     ofType(productsActions.CREATE_PRODUCT),
     switchMap( (action) => {
